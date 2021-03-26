@@ -102,7 +102,7 @@ function delet_item(id){
     console.log(newData);
     if(newData.length>0){
         localStorage.setItem("students",JSON.stringify(newData)); 
-
+        document.querySelector(".error").innerHTML=`<h3 class="text-center alert-danger display-4">Item Removed</h3>`
     }
     else{
         ClearAll();
@@ -118,7 +118,10 @@ ClearAll = () =>{
     students_table.innerHTML='';
    document.querySelector("#students tfoot").remove();
    data=JSON.parse(localStorage.getItem("students"))   
-   console.log(`After Clear All ==> dataLength= ${data.length}`); 
+   console.log(`After Clear All ==> dataLength= ${data.length}`);
+   document.querySelector(".error").innerHTML=`<h3 class="text-center alert-danger display-4">ALL items Removed</h3>`
+ 
+   
 
 }
 
