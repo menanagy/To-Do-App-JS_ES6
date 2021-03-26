@@ -36,6 +36,10 @@ student_data.onsubmit=(e)=>{
         // console.log(`First Name = ${first_name.value}`);
         // console.log(`Last Name = ${last_name.value}`);
         // console.log(`Age = ${age.value}`);
+        if(first_name.value==''||last_name.value==''||age.value==''){
+            document.querySelector(".error").innerHTML=`<h3 class="text-center alert-danger display-4">Please Fill All Fields</h3>`
+            return false;//for exit
+        }
         let uid=Math.floor(Math.random()*50000);//==>Make unique Id 
         // put all data in bject [FirstName,LastName,Age,UniqueID]
         let student ={uid:uid,first_name:first_name.value,last_name:last_name.value,age:age.value};
@@ -48,13 +52,13 @@ student_data.onsubmit=(e)=>{
         localStorage.setItem("students",JSON.stringify(studentArray));
         console.log("Store Array data in  localstorage = ");
         console.log(JSON.parse(localStorage.getItem("students"))); 
-        displayStudent(student);
+        AddStudent(student);
         
         clearInputs();
  
 }
 
-displayStudent=(student)=>{
+AddStudent=(student)=>{
                 count++;
                 console.log(`Welcome Count =  ${count}`);
                 displayStudentHTML(student);
@@ -63,6 +67,8 @@ displayStudent=(student)=>{
                 if(data.length==1){
                     displayTfoot();
                 }
+                document.querySelector(".error").innerHTML=`<h3 class="text-center alert-success display-4">Add Student</h3>`
+
 
 }
 
